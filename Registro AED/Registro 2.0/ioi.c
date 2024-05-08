@@ -1,42 +1,42 @@
-/*FaCENA organiza las Jornadas Argentinas de Didáctica de la Programación (JADiPro) 
-y necesita conocer la composición y cantidad de inscriptos al evento para ajustar 
-los detalles organizativos. Se tiene un archivo con los datos de los participantes 
+/*FaCENA organiza las Jornadas Argentinas de Didï¿½ctica de la Programaciï¿½n (JADiPro)
+y necesita conocer la composiciï¿½n y cantidad de inscriptos al evento para ajustar
+los detalles organizativos. Se tiene un archivo con los datos de los participantes
 con el siguiente formato de registro:
-	
-	Nro. Inscripcion    Apellido  		Nombre  	 Categoría  Importe de inscripción
+
+	Nro. Inscripcion    Apellido  		Nombre  	 Categorï¿½a  Importe de inscripciï¿½n
 			(int)		(char [15])		(char [15])		(int)		 (float)
-			
 
-Categorías: 1-Docente universitario, 2-Docente secundario, 3-Estudiante
 
-Los organizadores desean conocer el total de inscriptos para cada categoría (*), 
-	-un arreglo para recorrer el total de inscriptos 
-	
+Categorï¿½as: 1-Docente universitario, 2-Docente secundario, 3-Estudiante
+
+Los organizadores desean conocer el total de inscriptos para cada categorï¿½a (*),
+	-un arreglo para recorrer el total de inscriptos
+
 y el porcentaje que representan los estudiantes respecto del total de participantes.
 	un contador para participantes
 	un contador para estudiantes
 	una variable para porcentaje de estudiantes
-	
-A efectos de llevar un control, necesitan un reporte de los inscriptos al congreso 
-indicando apellido (en mayúsculas) y nombre, seguido de la categoría, con el siguiente formato:
+
+A efectos de llevar un control, necesitan un reporte de los inscriptos al congreso
+indicando apellido (en mayï¿½sculas) y nombre, seguido de la categorï¿½a, con el siguiente formato:
 
 LISTADO DE INSCRIPTOS AL CONGRESO
 PEREZ, Juan - Docente universitario
-…..
-GOMEZ, María – Estudiante
+ï¿½..
+GOMEZ, Marï¿½a ï¿½ Estudiante
 
 (*) se solicita utilizar arreglos para resolver este requerimiento.
 
 */
 
-#include<stdio.h>
-#include<string.h>
-#include<ctype.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
 void iniciarProceso();
 void procesarInscriptos();
 void finalizarProceso();
-	
+
 void obtenerTotalInscriptos();
 void obtenerInscriptos();
 void convertirApellidoMayusYConcatenar();
@@ -44,7 +44,8 @@ void procesarDatosInscriptos();
 
 typedef char tString[15];
 
-typedef struct {
+typedef struct
+{
 	int nroInscripcion;
 	tString apellido;
 	tString nombre;
@@ -53,69 +54,76 @@ typedef struct {
 } tRegInscriptos;
 
 tRegInscriptos regInscripto;
-FILE * archInscriptos;
+FILE *archInscriptos;
 
-int vInscriptos[9] = {0,0,0,0,0,0,0,0,0};
+int vInscriptos[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 int docUniversitario, docSecundario, estudiante;
 float porcEstudiantes;
 
-
-int main(){
+int main()
+{
 	iniciarProceso();
 	procesarInscriptos();
 	finalizarProceso();
-	
+
 	return 0;
 }
 
-void iniciarProceso(){
+void iniciarProceso()
+{
 	docUniversitario = 0;
 	docSecundario = 0;
 	estudiante = 0;
 	porcEstudiantes = 0;
-	
+
 	rchInscriptos = fopen("Inscriptos.dat", "rb");
 	printf("\t\t\t**REPORTE DE INSCRIPTOS A LA JORNADA DE PROGRAMACION**\n\n");
 }
 
-void procesarInscriptos(){
+void procesarInscriptos()
+{
 	obtenerInscriptos();
-	while(!feof(archInscriptos)){
+	while (!feof(archInscriptos))
+	{
 		procesarDatosInscriptos();
 		obtenerInscriptos();
 	}
 }
 
-void obtenerInscriptos(){
+void obtenerInscriptos()
+{
 	fread(&regInscripto, sizeof(tRegInscriptos), 1, archInscriptos);
 }
 
-void procesarDatosInscriptos(){
+void procesarDatosInscriptos()
+{
 	obtenerTotalInscriptos();
 }
 
-void obtenerTotalInscriptos(){
+void obtenerTotalInscriptos()
+{
 	int i = 0;
 	int cantInscriptos = vInscriptos[0];
 	int totalInscriptos = i + 1;
-	
-	for(i=0;i<9;i++){
-		if(vInscriptos[i] > cantInscriptos){
-			
+
+	for (i = 0; i < 9; i++)
+	{
+		if (vInscriptos[i] > cantInscriptos)
+		{
 		}
 	}
-		if(vUsuarioPorPais[i] > cantUsuarios){
-			cantUsuarios = vUsuarioPorPais[i];
-			paisConMasUsuario = i + 1;
-		}
+	if (vUsuarioPorPais[i] > cantUsuarios)
+	{
+		cantUsuarios = vUsuarioPorPais[i];
+		paisConMasUsuario = i + 1;
+	}
 
-void convertirApellidoMayusYConcatenar(){
-	
-}
+	void convertirApellidoMayusYConcatenar()
+	{
+	}
 
-void finalizarProceso(){
-	fclose(archInscriptos);
-}
-	
-
+	void finalizarProceso()
+	{
+		fclose(archInscriptos);
+	}

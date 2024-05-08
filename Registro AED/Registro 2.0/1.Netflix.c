@@ -1,6 +1,6 @@
-#include<stdio.h>
-#include<string.h>
-#include<ctype.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
 void iniciarProceso();
 void grabarArchivo();
@@ -11,7 +11,8 @@ void finalizarProceso();
 
 char respuesta;
 
-typedef struct{
+typedef struct
+{
 	int nroUsuario;
 	char nombre[60];
 	int codPais;
@@ -20,38 +21,44 @@ typedef struct{
 } tr_usuarios;
 
 tr_usuarios vr_usuarios;
-FILE * vf_usuarios;
+FILE *vf_usuarios;
 
-int main(){
+int main()
+{
 	iniciarProceso();
 	grabarArchivo();
 	finalizarProceso();
-	
+
 	return 0;
 }
 
-void iniciarProceso(){
+void iniciarProceso()
+{
 	vf_usuarios = fopen("Netflix.dat", "wb");
 	printf("\t\t***ARCHIVO DE USUARIOS DE NETFLIX CREADO***\n\n");
 }
 
-void grabarArchivo(){
+void grabarArchivo()
+{
 	ingresarRespuesta();
-	while(respuesta != 'n'){
+	while (respuesta != 'n')
+	{
 		ingresarDatosUsuarios();
 		grabarRegistroUsuarios();
 		ingresarRespuesta();
 	}
 }
 
-void ingresarRespuesta(){
+void ingresarRespuesta()
+{
 	printf("\nDesea agregar datos al archivo de usuarios? s/n: ");
 	fflush(stdin);
 	scanf("%c", &respuesta);
 	respuesta = tolower(respuesta);
 }
 
-void ingresarDatosUsuarios(){
+void ingresarDatosUsuarios()
+{
 	printf("Digite su numero de usuario: ");
 	scanf("%d", &vr_usuarios.nroUsuario);
 	printf("Digite su apellido y nombre: ");
@@ -66,12 +73,13 @@ void ingresarDatosUsuarios(){
 	scanf("%d", &vr_usuarios.conDiaria);
 }
 
-void grabarRegistroUsuarios(){
+void grabarRegistroUsuarios()
+{
 	fwrite(&vr_usuarios, sizeof(tr_usuarios), 1, vf_usuarios);
 	printf("\n\t**REGISDTRO DE USUARIOS AGREGADO**\n\n");
 }
 
-void finalizarProceso(){
+void finalizarProceso()
+{
 	fclose(vf_usuarios);
 }
-
